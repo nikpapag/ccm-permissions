@@ -1,0 +1,30 @@
+HarnessEventsMonitoringPolicy:
+  "Type": "AWS::IAM::ManagedPolicy"
+  "Condition": "CreateHarnessEventsMonitoringPolicy"
+  "Properties":
+    "Description": "Policy granting Harness Access to Enable Event Collection"
+    "PolicyDocument":
+      "Version": "2012-10-17"
+      "Statement":
+        - "Effect": "Allow"
+          "Action":
+              - "ecs:ListClusters*"
+              - "ecs:DescribeClusters"
+              - "ecs:ListServices"
+              - "ecs:DescribeServices"
+              - "ecs:DescribeContainerInstances"
+              - "ecs:ListTasks"
+              - "ecs:ListContainerInstances"
+              - "ecs:DescribeTasks"
+              - "ec2:DescribeInstances*"
+              - "ec2:DescribeRegions"
+              - "cloudwatch:GetMetricData"
+              - "ec2:DescribeVolumes"
+              - "ec2:DescribeSnapshots"
+              - "rds:DescribeDBSnapshots"
+              - "rds:DescribeDBInstances"
+              - "rds:DescribeDBClusters"
+              - "rds:DescribeDBSnapshotAttributes"
+          "Resource": "*"
+    "Roles":
+      - "!Ref HarnessCloudFormationRole"
