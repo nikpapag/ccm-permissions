@@ -1,0 +1,33 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "ec2:Describe*",
+                "ec2:DeleteSnapshot",
+                "ec2:DeleteVolume",
+                "ec2:Get*",
+                "ec2:ListImagesInRecycleBin",
+                "ec2:ListSnapshotsInRecycleBin",
+                "elasticbeanstalk:Check*",
+                "elasticbeanstalk:Describe*",
+                "elasticbeanstalk:List*",
+                "elasticbeanstalk:Request*",
+                "elasticbeanstalk:Retrieve*",
+                "elasticbeanstalk:Validate*",
+                "elasticloadbalancing:Describe*",
+                "rds:Describe*",
+                "rds:List*",
+                "autoscaling-plans:Describe*",
+                "autoscaling-plans:GetScalingPlanResourceForecastData",
+                "autoscaling:Describe*",
+                "autoscaling:GetPredictiveScalingForecast",
+                "s3:DescribeJob",
+                "s3:Get*",
+                "s3:List*"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        }
+    ]
+}
