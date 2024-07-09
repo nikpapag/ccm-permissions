@@ -1,0 +1,41 @@
+  HarnessBillingMonitoringPolicy:
+    "Type": "AWS::IAM::ManagedPolicy"
+    "Condition": "CreatingHarnessBillingMonitoringPolicy"
+    "Properties":
+      "Description": "Policy granting Harness Access to Collect Billing Data"
+      "PolicyDocument":
+        "Version": "2012-10-17"
+        "Statement":
+          - "Effect": "Allow"
+            "Action":
+              - "s3:GetBucketLocation"
+              - "s3:ListBucket"
+              - "s3:GetObject"
+            Resource:
+              - !Join
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref BucketName
+              - !Join
+                - /
+                - - !Join
+                    - ''
+                    - - "arn:aws:s3:::"
+                      - !Ref BucketName
+                  - '*'
+          - "Effect": "Allow"
+            "Action":
+              - "s3:ListBucket"
+              - "s3:PutObject"
+              - "s3:PutObjectAcl"
+            "Resource":
+              - "arn:aws:s3:::ce-customer-billing-data-prod*"
+              - "arn:aws:s3:::ce-customer-billing-data-prod*/*"
+          - "Effect": "Allow"
+            "Action":
+              - "cur:DescribeReportDefinitions"
+              - "organizations:Describe*"
+              - "organizations:List*"
+            "Resource": "*"
+      "Roles":
+        - "!Ref HarnessCloudFormationRole"
